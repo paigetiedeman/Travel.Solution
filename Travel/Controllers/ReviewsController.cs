@@ -21,9 +21,23 @@ namespace Travel.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Review>>> Get()
+    public async Task<ActionResult<IEnumerable<Review>>> Get(string name, string city, string country)
     {
-      return await _db.Reviews.ToListAsync();
+      var query = _db.Reviews.AsQueryable();
+
+      if (name != null)
+      {
+        query = query.Where(e => e.Name == name);
+      }
+      if (city != null)
+      {
+        query = query.Where(e => e.City == city);
+      }
+      if (country != null)
+      {
+        query = query.Where(e => e.Country == country);
+      }
+      return await query.ToListAsync();
     }
 
     [HttpGet("{id}")]
@@ -87,7 +101,7 @@ namespace Travel.Controllers
       await _db.SaveChangesAsync();
       return NoContent();
     }
-    
+
     private bool ReviewExists(int id)
     {
       return _db.Reviews.Any(entry => entry.ReviewId == id);
