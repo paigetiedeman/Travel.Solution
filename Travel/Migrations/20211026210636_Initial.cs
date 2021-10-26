@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Travel.Migrations
@@ -18,8 +17,7 @@ namespace Travel.Migrations
                     City = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
                     Country = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
                     Rating = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
-                    Image = table.Column<byte[]>(type: "longblob", nullable: true)
+                    Description = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
