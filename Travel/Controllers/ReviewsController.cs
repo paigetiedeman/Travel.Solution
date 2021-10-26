@@ -27,15 +27,15 @@ namespace Travel.Controllers
 
       if (name != null)
       {
-        query = query.Where(e => e.Name == name);
+        query = query.Where(entry => entry.Name == name);
       }
       if (city != null)
       {
-        query = query.Where(e => e.City == city);
+        query = query.Where(entry => entry.City == city);
       }
       if (country != null)
       {
-        query = query.Where(e => e.Country == country);
+        query = query.Where(entry => entry.Country == country);
       }
       return await query.ToListAsync();
     }
