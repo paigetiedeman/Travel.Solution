@@ -11,7 +11,7 @@
 
 #### an Epicodus project that allows the user to log and view travel Reviews
 
-#### Created By: Chynna Lew and Paige Tiedeman
+#### Created By: Chynna Lew, Paige Tiedeman, Nathan Fletcher, Anna Clarke, Scott Hutley and Art Weinstein
 
 ## Technologies Used
 
