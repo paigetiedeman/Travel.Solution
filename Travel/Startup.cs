@@ -14,6 +14,7 @@ namespace Travel
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,6 +29,20 @@ namespace Travel
             services.AddDbContext<TravelContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+            options.AddPolicy(name: MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000",
+                                        // "http://localhost:8081",
+                                        "http://localhost:5004",
+                                        "http://localhost:5003")
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+                });
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -70,6 +85,8 @@ namespace Travel
             // app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 
